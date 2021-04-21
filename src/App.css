@@ -1,0 +1,40 @@
+@media (prefers-reduced-motion: no-preference) {}
+
+body{
+  text-align: center;
+  background-color: gray;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+img{
+  width: 500px;
+  height: 300px;
+}
+
+.form-check-label{
+  color: white;
+  font-size: 20px;
+}
+
+.text{
+  color: #c4a64b;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+#button{
+  background-color: #c4a64b;
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 12px;
+}
+
+#button:hover{
+  background-color: #556B2F;
+}
+

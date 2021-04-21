@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>checkbox</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+        body{
+            text-align: center;
+            background-color: gray;
+        }
+        
+        img{
+            width: 500px;
+            height: 300px;
+        }
+
+        p{
+            color: white;
+            font-size: 18px;
+        }
+
+        .title{
+            font-size: 30px;
+            font-weight: bold;
+            color: #c4a64b;
+        }
+
+        #button{
+            background-color: #c4a64b;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 12px;
+        }
+
+        #button:hover{
+            background-color: #556B2F;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="all" name="checkboxAll" action="">
+        <p class="title">原生種鹿角蕨插畫圖鑑</p>
+        <hr>
+        <p>
+            <label>
+                <input type="checkbox" name="CheckboxAll" value="全選" id="CheckAll" /> 全部一起帶回家</label>
+        </p>
+
+        <p>
+          <label>
+            <input type="checkbox" name="checkboxChild" value="1" id="CheckboxGroup1" />【 亞洲猴腦鹿角蕨 】
+          </label>
+          <div class="image1">
+            <img src="images/Platycerium ridleyi.jpeg" alt="text" >
+          </div>
+        </p>
+
+        <p>
+          <label>
+            <input type="checkbox" name="checkboxChild" value="2" id="CheckboxGroup2" />【 圓盾鹿角蕨 】
+          </label>
+          <div class="image2">
+            <img src="images/Platycerium alcicorne.jpeg" alt="text">
+          </div>
+        </p>
+
+        <p>
+          <label>
+            <input type="checkbox" name="checkboxChild" value="3" id="CheckboxGroup3" />【 安地斯鹿角蕨 】
+          </label>
+          <div class="image3">
+            <img src="images/Platycerium andinum.jpeg" alt="text">
+          </div>
+        </p>
+
+        <p>
+            <input type="button" id="button" value="送出" />
+            <a href="#"></a>
+        </p>
+        
+
+    </div>
+    
+    <script>
+      const $all = document.querySelector('[name="checkboxAll"]')
+      //https://www.runoob.com/jsref/met-document-queryselector.html
+        const $child = document.querySelectorAll('[name="checkboxChild"]')
+        //https://www.runoob.com/jsref/met-document-queryselectorall.html
+      
+        const command = {
+          // 全選/全不選
+          select(value) {
+            $all.checked = value
+            $child.forEach(($el) => {
+              $el.checked = value
+            })
+            //$el就是jQuery抓取到的dom對象
+          },
+          /*forEach 基本上可以達到 for... 迴圈的所有需求
+          https://wcc723.github.io/javascript/2017/06/29/es6-native-array/#Array-prototype-forEach*/
+          
+          // 全選按钮是否正常顯示
+          checkAll() {
+            $all.checked = !Array.from($child).find(($el) => !$el.checked)
+          }
+          /*Array.from
+          https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/from */
+        }
+      
+        $all.addEventListener('change', (event) => {
+          command.select(event.target.checked)
+        })
+        /*addEventListener
+        https://www.runoob.com/jsref/met-element-addeventlistener.html */
+      
+        $child.forEach(($el) => {
+          $el.addEventListener('change', command.checkAll)
+        })
+        /*forEach
+        https://www.runoob.com/jsref/jsref-foreach.html*/
+
+    </script>   
+    
+</body>
+   
+</html>
